@@ -21,8 +21,6 @@ export default function SocialButtons({
   const handle = async (provider: Provider) => {
     setPending(provider);
     const { error } = await signIn.social({ provider, callbackURL: callbackUrl });
-
-    // on success the browser leaves for the provider, so we only land here on failure
     if (error) {
       toast.error(error.message ?? "সাইন ইন করা যায়নি, আবার চেষ্টা করুন");
       setPending(null);

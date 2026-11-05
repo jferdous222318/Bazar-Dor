@@ -91,8 +91,6 @@ export default async function ProductPage({ params }: Props) {
           </li>
         </ol>
       </nav>
-
-      {/* header card */}
       <div className="surface flex flex-col gap-5 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <div className="flex items-center gap-4">
           <span
@@ -112,8 +110,6 @@ export default async function ProductPage({ params }: Props) {
             </p>
           </div>
         </div>
-
-        {/* today's price box */}
         <div className="shrink-0 rounded-xl bg-[var(--brand-soft)] px-5 py-4 text-center sm:min-w-40">
           <p className="text-xs text-[var(--brand-dark)]">আজকের দাম</p>
           <p className="mt-0.5 text-2xl font-bold tabular-nums sm:text-3xl">
@@ -130,8 +126,6 @@ export default async function ProductPage({ params }: Props) {
           />
         </div>
       </div>
-
-      {/* price summary */}
       <section className="surface px-5 py-5 sm:px-6">
         <h2 className="text-base font-bold sm:text-lg">দামের সারসংক্ষেপ</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -155,7 +149,7 @@ export default async function ProductPage({ params }: Props) {
         </div>
       </section>
 
-      {/* OPTIONAL — delete this block to match the Figma exactly */}
+     
       <section className="surface px-5 py-5 sm:px-6">
         <h2 className="text-base font-bold sm:text-lg">দামের গতিপ্রকৃতি</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -165,7 +159,6 @@ export default async function ProductPage({ params }: Props) {
         </div>
       </section>
 
-      {/* market-wise table */}
       <section className="space-y-3">
         <h2 className="text-base font-bold sm:text-lg">বাজারভিত্তিক আজকের দাম</h2>
         <MarketTable markets={product.markets} unit={product.unit} />

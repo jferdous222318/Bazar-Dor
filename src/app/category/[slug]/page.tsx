@@ -4,8 +4,6 @@ import { getCategories, getCategory, getProducts } from "@/lib/api";
 import ProductGrid from "@/components/product/ProductGrid";
 
 type Props = { params: Promise<{ slug: string }> };
-
-// pre-renders the 8 known categories; unknown slugs still render on demand
 export async function generateStaticParams() {
   const categories = await getCategories().catch(() => []);
   return categories.map((c) => ({ slug: c.slug }));

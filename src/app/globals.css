@@ -12,9 +12,6 @@
 
   --ink: #101828;
   --muted: #667085;
-
-  /* price direction — matches the Figma:
-     a RISE is red (bad for the buyer), a FALL is green */
   --up: #d92d20;
   --up-soft: #fef3f2;
   --down: #039855;
@@ -33,8 +30,6 @@ body {
   color: var(--ink);
   font-family: var(--font-bn), system-ui, sans-serif;
 }
-
-/* hide scrollbar on the horizontally scrolling category row */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -42,15 +37,11 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
-/* shared surface used by cards, panels and tables */
 .surface {
   background: var(--card-bg);
   border: 1px solid var(--border-soft);
   border-radius: 0.875rem;
 }
-
-/* skeleton shimmer for loading states */
 .skeleton {
   background: linear-gradient(
     90deg,

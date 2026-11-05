@@ -11,22 +11,15 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  // one fetch, shared by all three sections.
-  // layout.tsx already calls getProducts() for the ticker — Next dedupes it,
-  // so this does not cause a second network request.
   const products = await getProducts();
 
   return (
     <>
       <Hero />
 
-      {/* ▲ আজ দাম বেড়েছে — top 6 risers */}
       <PriceMoversSection variant="up" products={products} />
 
-      {/* ▼ আজ দাম কমেছে — top 6 fallers */}
       <PriceMoversSection variant="down" products={products} />
-
-      {/* সব পণ্য — the #all-products anchor the hero button scrolls to */}
       <AllProductsSection products={products} />
     </>
   );

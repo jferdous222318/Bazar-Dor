@@ -7,7 +7,7 @@ export async function proxy(request: NextRequest) {
   if (!session) {
     const url = new URL("/signin", request.url);
     url.searchParams.set("callbackUrl", request.nextUrl.pathname);
-    url.searchParams.set("reason", "protected"); // signin page shows a toast
+    url.searchParams.set("reason", "protected"); 
     return NextResponse.redirect(url);
   }
 

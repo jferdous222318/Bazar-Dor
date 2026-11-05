@@ -16,8 +16,6 @@ export default function SignInForm() {
 
   const callbackUrl = params.get("callbackUrl") || "/";
   const reason = params.get("reason");
-
-  // toast once when proxy.ts bounced the user here from a protected route
   const warned = useRef(false);
   useEffect(() => {
     if (reason === "protected" && !warned.current) {

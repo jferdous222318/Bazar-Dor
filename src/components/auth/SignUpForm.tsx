@@ -40,8 +40,6 @@ export default function SignUpForm() {
       toast.error(error.message ?? "অ্যাকাউন্ট তৈরি করা যায়নি");
       return;
     }
-
-    // auth.ts has autoSignIn: true, so the session already exists here
     toast.success("অ্যাকাউন্ট তৈরি হয়েছে");
     router.push(callbackUrl);
     router.refresh();

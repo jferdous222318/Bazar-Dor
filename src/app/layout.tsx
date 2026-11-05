@@ -22,7 +22,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // never let an API failure break the whole layout
   const [categories, products] = await Promise.all([
     getCategories().catch(() => []),
     getProducts().catch(() => []),
