@@ -7,17 +7,27 @@
   --page-bg: #f0f4ef;
   --card-bg: #fafcf9;
   --border-soft: #e3e9e1;
-  --up: #d92d20;     /* price rose: red, as in the Figma */
-  --down: #039855;   /* price fell: green */
-  --flat: #667085;
+  --up: #039855;     /* price rose: green */
+  --down: #d92d20;   /* price fell: red */
+  --flat: #667085;   /* no change: gray */
 }
 
 html {
-  scroll-behavior: smooth; /* for the hero CTA anchor scroll */
-  scroll-padding-top: 120px; /* keeps the section below the sticky navbar */
+  scroll-behavior: smooth;   /* hero CTA anchor scroll */
+  scroll-padding-top: 130px; /* keeps the section below the sticky navbar */
 }
 
 body {
   background: var(--page-bg);
   color: #101828;
+  font-family: var(--font-bn), system-ui, sans-serif;
+}
+
+/* hide scrollbar on the horizontally scrolling category row */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
