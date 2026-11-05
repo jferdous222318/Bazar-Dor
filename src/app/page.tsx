@@ -1,18 +1,33 @@
-import { getCategories, getProducts } from "@/lib/api";
-import { formatPrice, getBanglaDate, unitLabel } from "@/lib/format";
-import { getPriceStats, getTopRisers } from "@/lib/price";
+import type { Metadata } from "next";
+import Hero from "@/components/home/Hero";
+import PriceMoversSection from "@/components/home/PriceMoversSection";
+import AllProductsSection from "@/components/home/AllProductsSection";
+import { getProducts } from "@/lib/api";
+
+export const metadata: Metadata = {
+  title: "বাজার দর | আজকের বাজারের দাম এক নজরে",
+  description:
+    "চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম-দুধ ও মসলার আজকের দাম — বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।",
+};
 
 export default async function Home() {
-  const [categories, products] = await Promise.all([getCategories(), getProducts()]);
-  const stats = getPriceStats(products[3]); // বাটাম সাইজ চাল
+  // one fetch, shared by all three sections.
+  // layout.tsx already calls getProducts() for the ticker — Next dedupes it,
+  // so this does not cause a second network request.
+  const products = await getProducts();
 
   return (
-    <pre style={{ padding: 20 }}>
-      {getBanglaDate()}
-      {"\n"}categories: {categories.length} | products: {products.length}
-      {"\n"}ইলিশ: {formatPrice(products[18].today)} {unitLabel(products[18].unit)}
-      {"\n"}বাটাম min/max/avg: {formatPrice(stats.min)} / {formatPrice(stats.max)} / {formatPrice(stats.avg)}
-      {"\n"}risers: {getTopRisers(products).map((p) => p.nameBn).join(", ")}
-    </pre>
+    <>
+      <Hero />
+
+      {/* ▲ আজ দাম বেড়েছে — top 6 risers */}
+      <PriceMoversSection variant="up" products={products} />
+
+      {/* ▼ আজ দাম কমেছে — top 6 fallers */}
+      <PriceMoversSection variant="down" products={products} />
+
+      {/* সব পণ্য — the #all-products anchor the hero button scrolls to */}
+      <AllProductsSection products={products} />
+    </>
   );
 }
