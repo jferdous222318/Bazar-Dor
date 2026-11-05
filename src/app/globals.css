@@ -4,12 +4,23 @@
 :root {
   --brand: #038a42;
   --brand-dark: #02713a;
+  --brand-soft: #e7f4ec;
+
   --page-bg: #f0f4ef;
   --card-bg: #fafcf9;
   --border-soft: #e3e9e1;
-  --up: #039855;     /* price rose: green */
-  --down: #d92d20;   /* price fell: red */
-  --flat: #667085;   /* no change: gray */
+
+  --ink: #101828;
+  --muted: #667085;
+
+  /* price direction — matches the Figma:
+     a RISE is red (bad for the buyer), a FALL is green */
+  --up: #d92d20;
+  --up-soft: #fef3f2;
+  --down: #039855;
+  --down-soft: #ecfdf3;
+  --flat: #667085;
+  --flat-soft: #f2f4f7;
 }
 
 html {
@@ -19,7 +30,7 @@ html {
 
 body {
   background: var(--page-bg);
-  color: #101828;
+  color: var(--ink);
   font-family: var(--font-bn), system-ui, sans-serif;
 }
 
@@ -30,4 +41,34 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* shared surface used by cards, panels and tables */
+.surface {
+  background: var(--card-bg);
+  border: 1px solid var(--border-soft);
+  border-radius: 0.875rem;
+}
+
+/* skeleton shimmer for loading states */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--border-soft) 25%,
+    #eef2ed 37%,
+    var(--border-soft) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+  border-radius: 0.5rem;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .skeleton { animation: none; }
 }

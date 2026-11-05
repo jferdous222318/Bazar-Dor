@@ -10,9 +10,6 @@ import { signOut, useSession } from "@/lib/auth-client";
 import { getBanglaDate } from "@/lib/format";
 import type { ICategory } from "@/types/type";
 import CategoryNav from "./CategoryNav";
-
-// Renders "" on the server and the real date on the client,
-// so the date is always fresh and never causes a hydration mismatch.
 function useBanglaDate() {
   return useSyncExternalStore(
     () => () => {},
@@ -48,8 +45,6 @@ function UserMenu({
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const router = useRouter();
-
-  // close when clicking outside
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
@@ -114,7 +109,6 @@ export default function Navbar({ categories }: { categories: ICategory[] }) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border-soft)] bg-[var(--card-bg)]/95 backdrop-blur">
-      {/* Row 1: logo + auth */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-3">
           <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--brand)] text-lg">
@@ -149,8 +143,6 @@ export default function Navbar({ categories }: { categories: ICategory[] }) {
           )}
         </div>
       </div>
-
-      {/* Row 2: category links */}
       <CategoryNav categories={categories} />
     </header>
   );
